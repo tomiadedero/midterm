@@ -16,7 +16,13 @@ import java.util.Scanner;
  * then print the status details. 
  * @author srinivsi 
  */
+
+
 public class Status {
+    
+    enum UserStatus {
+    ZERO, ONE, TWO, THREE
+}
 
     /**
      * @param args the command line arguments
@@ -25,9 +31,14 @@ public class Status {
     {
     Scanner in =new Scanner(System.in);
     System.out.println("Enter the user status code (zero,one,two,three) in string");
-    String code = in.next();
-    StausUser t= new StausUser();
-    t.statusDetail(code); 
+    
+    try {
+        UserStatus status = UserStatus.valueOf(in.next().toUpperCase());
+        StatusUser t = new StatusUser();
+        t.statusDetail(status);
+    } catch (IllegalArgumentException e){
+        System.out.println("invalid");
+    }
     }
     
 }
